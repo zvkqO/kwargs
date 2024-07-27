@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": 
+    [
+        {
+            "name": "streamlit debug",
+            "type": "python",
+            // "type": "debugpy",
+            "request": "launch",
+            "module": "streamlit",
+            "args": ["run", "${file}"],
+            "justMyCode": true,
+        }
+    ]
+   }
