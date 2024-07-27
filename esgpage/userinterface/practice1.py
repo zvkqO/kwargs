@@ -5,6 +5,9 @@ import FinanceDataReader as fdr
 import mplfinance as mpf
 from datetime import datetime, timedelta
 import json
+import yaml
+import streamlit_authenticator as stauth
+import time
 import requests as rq
 import bs4
 import matplotlib.pyplot as plt
@@ -35,6 +38,22 @@ def load_stock_data(code, ndays):
     start_date = end_date - pd.Timedelta(days=ndays)
     data = fdr.DataReader(code, start_date, end_date)
     return data
+
+# 로그아웃에 대한 함수
+def forceLogout():
+    authenticator.cookie_manager.delete(authenticator.cookie_name)
+    st.session_state['logout'] = True
+    st.session_state['name'] = None
+    st.session_state['username'] = None
+    st.session_state['authentication_status'] = None
+    del st.session_state['clickedReset']
+
+# 리셋 버튼이 클릭되었는지에 대해서 그 상태를 반환하는 함수 
+def hasClickedReset():
+    if 'clickedReset' in st.session_state.keys() and st.session_state['clickedReset']:
+        return True
+    else:
+        return False
 
 # 캔들차트 출력 함수
 def plotChart(data): # 외부에서 데이터를 주면 이를 바탕으로 캔들 차트 출력
@@ -205,6 +224,18 @@ elif selected == '방법론':
     st.write('방법방법')
 # elif selected == '최근 뉴스':
 # elif selected == '로그인 / 회원가입':
+with open('config.yaml','r') as f:
+  config = yaml.load(f, Loader=yaml.SafeLoader)
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+# 
+# 
+# 
+# 
 # elif selected == '마이페이지':
-
-
