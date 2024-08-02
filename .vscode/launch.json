@@ -4,8 +4,8 @@
     [
         {
             "name": "streamlit debug",
-            "type": "python",
-            // "type": "debugpy",
+            // "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "streamlit",
             "args": ["run", "${file}"],
