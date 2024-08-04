@@ -12,9 +12,10 @@ credentials:
       password: $2b$12$GMY9djU.QOwOWOnMWI7dTerQifujuwCUx.xx1WS0Ook1DOIv2Rzpi
     kimna707:
       email: kimna707@naver.com
-      logged_in: false
+      failed_login_attempts: 3
+      logged_in: true
       name: kimnayeon
-      password: $2b$12$6Wa9uCHnTW5QCcr6lOTAkuaCwxLa795CcZkdsArKuLwfO5wxYKlRG
+      password: $2b$12$8c7e2E2UCAcwFZ/t.XA0de0cFHsHNviRHMviwcTmvxzZiFvvzaWLK
     ssyi:
       email: ssyi@mail.com
       failed_login_attempts: 0

@@ -176,6 +176,9 @@ if 'volume' not in st.session_state:
 
 if 'login_status' not in st.session_state:
     st.session_state['login_status'] = False
+    
+if 'user_name' not in st.session_state:
+    st.session_state['username'] = None
 
 initial_values = {'전자': 0, '에너지': 0, '헬스케어': 0, '차량': 0, '소재': 0, '화학': 0, '미디어': 0, '건설': 0, '금융': 0, '정보기술': 0, '생활소비재': 0, '운송': 0, '중공업': 0, '유통': 0, 'E': 0, 'S': 0, 'G': 0}
 if 'sliders' not in st.session_state:
@@ -211,7 +214,7 @@ if selected == '홈':
 
     if submit_button:
         if not has_changes(st.session_state['sliders']):
-            st.warning('슬라이더를 변경하여 주십시오.')
+            st.warning('슬라이더 값을 변경하여 주십시오.')
         else:
             st.session_state['form_submitted'] = True
             # 로그인된 사용자의 경우 선호도 저장
@@ -219,22 +222,22 @@ if selected == '홈':
                 # save_user_preferences(st.session_state['username'], st.session_state['sliders'])
                 st.experimental_rerun()
                 
-            # elif 'username' not in st.session_state:
             elif st.session_state['username'] is None:
                 st.warning('로그인 진행 후 입력하여 주십시오.')
                 time.sleep(4)
                 st.experimental_rerun()
 
-    if 'form_submitted' in st.session_state and 'username' in st.session_state:
+    # if 'form_submitted' in st.session_state and 'username' in st.session_state:
+    if submit_button and 'username' is not None:
         st.success('완료')
-        st.write('관심도')
+        st.write(' ')
+        st.subheader('설정 값')
         st.write(' ')
         df = pd.DataFrame(list(st.session_state['sliders'].items()), columns=['항목', '값'])
         st.dataframe(df)
 
         # 추천 회사 목록 (지금은 예시로 만들어 놓음)
         user_preferences = st.session_state['sliders']
-        
         # recommended_companies = recommend_stocks(user_preferences)
         recommended_companies = ['005930', '000660', '035420']  # 삼성전자, SK하이닉스, NAVER
         df.to_csv('slider_values.csv', index=False)
@@ -452,8 +455,7 @@ elif selected == '로그인 / 회원가입':
 
         
 elif selected == '마이페이지':
-    st.write('dd')
     if st.session_state['login_status'] == False:
         st.warning('로그인을 진행하여 주십시오.')
     if st.session_state['login_status'] == True:
-        st.write('ㅇㅇ')
+        st.write('마이 페이지')
