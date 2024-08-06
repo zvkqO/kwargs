@@ -1,0 +1,21 @@
+cookie:
+  expiry_days: 30
+  key: abcd
+  name: myCookie
+credentials:
+  usernames:
+    gdhong:
+      email: gdhong@mail.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: "\uD64D\uAE38\uB3D9"
+      password: $2b$12$GMY9djU.QOwOWOnMWI7dTerQifujuwCUx.xx1WS0Ook1DOIv2Rzpi
+    ssyi:
+      email: ssyi@mail.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: "\uC774\uC21C\uC2E0"
+      password: $2b$12$XmojbZvx7akLY208c/UnVeq4VL7ingVxSVAs/54./NIAAht7j.29i
+preauthorized:
+  emails:
+  - admin123@mail.com
