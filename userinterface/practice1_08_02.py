@@ -19,6 +19,10 @@ from passlib.context import CryptContext
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.neighbors import NearestNeighbors
+from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+import certifi
 
 from streamlit_authenticator.utilities import (CredentialsError,
                                                ForgotError,
@@ -64,34 +68,23 @@ def recommend_stocks(user_preferences, n_recommendations=3):
     return recommended_companies
 
 # 관심도 저장 및 로드 함수
-# connection = pymysql.connect(
-#         host='kwargs',
-#         port = 3306,
-#         user='root',
-#         password='12341234',
-#         database='your_database_name'
-#     )
-
-
 def save_user_preferences(username, preferences):
-    # connection = create_connection()
-    cursor = connection.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS preferences (
-            username VARCHAR(255),
-            category VARCHAR(255),
-            score INT,
-            PRIMARY KEY (username, category)
-        )
-    ''')
+    uri = "mongodb+srv://pinku03260707:6C6X9TbrQFpdyqEf@kwargs.za1zguv.mongodb.net/?retryWrites=true&w=majority&appName=kwargs"
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    doc = {
+        'username' : username,
+         '전자': 0, '에너지': 0, '헬스케어': 0, '차량': 0, '소재': 0, '화학': 0, '미디어': 0, '건설': 0, '금융': 0, '정보기술': 0, '생활소비재': 0, '운송': 0, '중공업': 0, '유통': 0, 'E': 0, 'S': 0, 'G': 0
+    }
+    
     for category, score in preferences.items():
         cursor.execute('''
             INSERT INTO preferences (username, category, score) 
             VALUES (%s, %s, %s) 
             ON DUPLICATE KEY UPDATE score=%s
         ''', (username, category, score, score))
-    connection.commit()
-    connection.close()
+       
+    
+    db.users.insert_one(doc)
 
 def load_user_preferences(username):
     connection = create_connection()

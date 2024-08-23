@@ -10,12 +10,23 @@ credentials:
       logged_in: false
       name: "\uD64D\uAE38\uB3D9"
       password: $2b$12$GMY9djU.QOwOWOnMWI7dTerQifujuwCUx.xx1WS0Ook1DOIv2Rzpi
+    hongg77:
+      email: gildong@naver.com
+      logged_in: false
+      name: hong
+      password: $2b$12$mNGtroyQQb8/eJIvYR.qYeJK/tsLgfHgl/eWGz3bwfWMMczg..Qmm
     kimna707:
       email: kimna707@naver.com
-      failed_login_attempts: 3
+      failed_login_attempts: 12
       logged_in: true
       name: kimnayeon
       password: $2b$12$8c7e2E2UCAcwFZ/t.XA0de0cFHsHNviRHMviwcTmvxzZiFvvzaWLK
+    kimnna606:
+      email: kimna707@daum.com
+      failed_login_attempts: 0
+      logged_in: true
+      name: kimnayyeon
+      password: $2b$12$QYZc8Dsqu/dfAXqhkxvCcuK9l.UzNW6x4yzUND.X4ntNyhb93wldq
     ssyi:
       email: ssyi@mail.com
       failed_login_attempts: 0
